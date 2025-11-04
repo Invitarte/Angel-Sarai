@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ÁNGEL & SARAI l</title>
+<title>Invitación animada 💌</title>
 <style>
   body {
     margin: 0;
@@ -11,40 +11,79 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fce9e3;
-    font-family: "Georgia", serif;
+    background: #fff6f2;
+    font-family: 'Georgia', serif;
   }
 
+  .container {
+    position: relative;
+    width: 360px;
+    height: 250px;
+    perspective: 1200px;
+  }
+
+  /* === SOBRE CERRADO === */
   .envelope {
     position: relative;
-    width: 320px;
-    height: 200px;
-    background: #d4a373;
+    width: 100%;
+    height: 100%;
+    background: #f0c28a;
+    border-radius: 6px;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-    border-radius: 5px;
+    cursor: pointer;
+    transform-style: preserve-3d;
     transition: all 1s ease;
     overflow: hidden;
   }
 
+  /* Parte superior (solapa) */
   .flap {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    background: #b07d62;
-    clip-path: polygon(0 0, 100% 0, 50% 50%);
+    height: 50%;
+    background: #d6a167;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
     transform-origin: top;
     transition: transform 1s ease;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
     z-index: 2;
   }
 
-  .open .flap {
-    transform: rotateX(180deg);
+  /* Cuerpo inferior */
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    background: #e9b06e;
+    clip-path: polygon(0 0, 50% 50%, 100% 0, 100% 100%, 0 100%);
+    z-index: 1;
   }
 
+  /* Sello */
+  .seal {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle at center, #ffb3b3 0%, #d56a6a 90%);
+    color: #fff;
+    font-weight: bold;
+    font-size: 16px;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: inset 0 2px 8px rgba(0,0,0,0.3);
+    border: 3px solid #f4c2c2;
+    z-index: 3;
+  }
+
+  /* === INVITACIÓN === */
   .invitation {
     position: absolute;
     top: 0;
@@ -52,77 +91,52 @@
     width: 100%;
     height: 100%;
     background: white;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    transform: translateY(30px);
     opacity: 0;
-    transform: translateY(40px);
     transition: all 1s ease;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 1;
+  }
+
+  .invitation img {
+    width: 90%;
+    border-radius: 8px;
+  }
+
+  /* === ANIMACIÓN DE APERTURA === */
+  .open .flap {
+    transform: rotateX(180deg);
   }
 
   .open .invitation {
     opacity: 1;
     transform: translateY(0);
   }
-
-  .invitation img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
-  }
-
-  .button-container {
-    position: absolute;
-    bottom: -60px;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  button {
-    background: #d4a373;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    border-radius: 8px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    transition: background 0.3s;
-  }
-
-  button:hover {
-    background: #b07d62;
-  }
-
-  /* Animación sutil del sobre */
-  .envelope:hover {
-    transform: scale(1.03);
-  }
 </style>
 </head>
 <body>
 
-  <div class="envelope" id="envelope">
-    <div class="flap"></div>
-    <div class="invitation">
-      <!-- 🔻 Aquí colocas tu imagen -->
-      <img src="invitación" alt="Invitación">
+  <div class="container" id="card">
+    <div class="envelope">
+      <div class="flap"></div>
+      <div class="bottom"></div>
+      <div class="seal">Abrir</div>
     </div>
-    <div class="button-container">
-      <button id="openBtn">Abrir invitación 💌</button>
+    <div class="invitation">
+      <!-- Aquí colocas tu imagen de invitación -->
+      <img src="invitacion.png" alt="Invitación">
     </div>
   </div>
 
 <script>
-  const envelope = document.getElementById('envelope');
-  const button = document.getElementById('openBtn');
-
-  button.addEventListener('click', () => {
-    envelope.classList.toggle('open');
+  const card = document.getElementById('card');
+  card.addEventListener('click', () => {
+    card.classList.toggle('open');
   });
 </script>
 
 </body>
 </html>
-
