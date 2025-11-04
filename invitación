@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Invitación Especial</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #fce9e3; /* fondo suave */
+    font-family: "Georgia", serif;
+  }
+
+  .envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    background: #d4a373;
+    cursor: pointer;
+    transition: all 0.8s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    border-radius: 5px;
+  }
+
+  .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #b07d62;
+    clip-path: polygon(0 0, 100% 0, 50% 50%);
+    transform-origin: top;
+    transition: transform 1s ease;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  .letter {
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 280px;
+    height: 160px;
+    background: #fffaf0;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+    border-radius: 10px;
+  }
+
+  .envelope.open .flap {
+    transform: rotateX(180deg);
+  }
+
+  .envelope.open .letter {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  h2 {
+    margin-top: 0;
+    color: #8b5e3c;
+  }
+
+  p {
+    font-size: 15px;
+    color: #444;
+  }
+
+  .boton {
+    margin-top: 15px;
+    padding: 8px 15px;
+    background: #d4a373;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .boton:hover {
+    background: #b07d62;
+  }
+</style>
+</head>
+<body>
+  <div class="envelope" id="envelope">
+    <div class="flap"></div>
+    <div class="letter">
+      <h2>💍 Sarai & Carlos</h2>
+      <p>Nos complace anunciar que uniremos nuestras vidas en una ceremonia muy especial.</p>
+      <p>📅 14 de diciembre de 2025</p>
+      <p>📍 Hacienda Los Olivos</p>
+      <button class="boton">¡Nos encantará verte!</button>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    envelope.addEventListener('click', () => {
+      envelope.classList.toggle('open');
+    });
+  </script>
+</body>
+</html>
