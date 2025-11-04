@@ -11,19 +11,19 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #fce9e3; /* fondo suave */
+    background: #fce9e3;
     font-family: "Georgia", serif;
   }
 
   .envelope {
     position: relative;
-    width: 300px;
+    width: 320px;
     height: 200px;
     background: #d4a373;
-    cursor: pointer;
-    transition: all 0.8s ease;
     box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     border-radius: 5px;
+    transition: all 1s ease;
+    overflow: hidden;
   }
 
   .flap {
@@ -38,69 +38,91 @@
     transition: transform 1s ease;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    z-index: 2;
   }
 
-  .letter {
-    position: absolute;
-    top: 20px;
-    left: 10px;
-    width: 280px;
-    height: 160px;
-    background: #fffaf0;
-    padding: 20px;
-    box-sizing: border-box;
-    text-align: center;
-    opacity: 0;
-    transform: translateY(50px);
-    transition: all 1s ease;
-    border-radius: 10px;
-  }
-
-  .envelope.open .flap {
+  .open .flap {
     transform: rotateX(180deg);
   }
 
-  .envelope.open .letter {
+  .invitation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 1s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+  }
+
+  .open .invitation {
     opacity: 1;
     transform: translateY(0);
   }
 
-  h2 {
-    margin-top: 0;
-    color: #8b5e3c;
+  .invitation img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
   }
 
-  p {
-    font-size: 25px;
-    color: #444;
+  .button-container {
+    position: absolute;
+    bottom: -60px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .boton {
-    margin-top: 15px;
-    padding: 8px 15px;
+  button {
     background: #d4a373;
-    color: white;
     border: none;
-    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    transition: background 0.3s;
   }
 
-  .boton:hover {
+  button:hover {
     background: #b07d62;
+  }
+
+  /* Animación sutil del sobre */
+  .envelope:hover {
+    transform: scale(1.03);
   }
 </style>
 </head>
 <body>
+
   <div class="envelope" id="envelope">
     <div class="flap"></div>
-   <img scr= "Nos complace anunciar que uniremos nuestras vidas en matrimonio civil. Sería un honor contar con tu presencia para compartir la alegría de este día tan significativo para nosotros.png" alt="invitación">
+    <div class="invitation">
+      <!-- 🔻 Aquí colocas tu imagen -->
+      <img src="TU_IMAGEN_AQUI.jpg" alt="Invitación">
+    </div>
+    <div class="button-container">
+      <button id="openBtn">Abrir invitación 💌</button>
+    </div>
+  </div>
 
-  <script>
-    const envelope = document.getElementById('envelope');
-    envelope.addEventListener('click', () => {
-      envelope.classList.toggle('open');
-    });
-  </script>
+<script>
+  const envelope = document.getElementById('envelope');
+  const button = document.getElementById('openBtn');
+
+  button.addEventListener('click', () => {
+    envelope.classList.toggle('open');
+  });
+</script>
+
 </body>
 </html>
+
